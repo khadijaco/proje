@@ -1,0 +1,137 @@
+/* .cell{ font-size: 25px;
+text-align: center;
+border: 2px solid red;  
+
+color:white; padding: 10p 0; }
+.cell-1{background-color: aqua;
+grid-area: banner;
+}
+.cell-2{background-color: rgb(82, 5, 92);
+grid-area: sidebar;
+}
+.cell-3{background-color: rgb(121, 83, 144);
+grid-area: content;
+}
+.cell-4{background-color: rgb(120, 184, 31);
+grid-area: ads;
+}
+.cell-5{background-color: rgb(22, 156, 18);
+grid-area: footer;
+} */
+
+ /* *{padding: 0;
+margin: 0;}
+.containar{ display: flex;
+    flex-direction:column ;
+
+}
+.items{ flex: 0 0 300px;
+justify-content: center;
+font-size: 60px;
+justify-content:center ;
+align-items: center;
+color: azure;
+display: flex;
+text-transform:uppercase ;}
+
+@media screen  and (min-width:576px){
+.containar{display: grid;
+height: 100vh;
+grid-template-areas: 
+"one one two three three"
+"one one four  five five"
+"six seven seven five five "
+"six  eight nine nine ten";
+
+
+grid-template-columns: repeat(4.1fr);
+grid-template-rows: repeat(3.1fr);}
+}
+
+
+
+
+
+.itm-1{ 
+grid-area: one; 
+background :linear-gradient(rgba(0,0,0,0.3) , rgba(0,0,0,0.3)) ,
+url("./a.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+color: rgb(255, 255, 255);
+}
+.itm-2{ background-color: rgb(40, 227, 19);
+grid-area: two;}
+.itm-3{ background-color: rgb(18, 115, 115);
+grid-area: three;}
+.itm-4{ background-color: rgb(149, 109, 36);
+grid-area: four;}
+.itm-5{ background-color: rgb(28, 4, 100);
+grid-area: five;}
+.itm-6{ background-color: rgb(98, 77, 77);
+grid-area: six;}
+.itm-7{ background-color: rgb(88, 1, 87);
+grid-area: seven;}
+.itm-8{ background-color: rgb(42, 165, 87);
+grid-area: eight;}
+.itm-9{ background-color: rgb(157, 115, 160);
+grid-area: nine;}
+.itm-10{ background-color: rgb(16, 117, 33);
+grid-area: ten;} */
+
+
+
+
+/* ================= */
+/* *{margin: 0;
+padding: 0;}
+.containar{height: 100vh;
+display: grid;
+grid-template-columns: 100px minmax(4rem ,100%) 100px ;
+grid-template-rows:  100px minmax(4rem ,100%) 100px;}
+.itm-1{  
+
+background-color: brown;
+}
+.itm-2{ background-color: rgb(40, 227, 19);
+}
+.itm-3{ background-color: rgb(18, 115, 115);
+}
+.itm-4{ background-color: rgb(149, 109, 36);
+}
+.itm-5{ background-color: rgb(28, 4, 100);
+}
+.itm-6{ background-color: rgb(98, 77, 77);
+}
+.itm-7{ background-color: rgb(88, 1, 87);
+}
+.itm-8{ background-color: rgb(42, 165, 87);
+}
+.itm-9{ background-color: rgb(157, 115, 160);
+} */
+ *{margin: 0;
+padding: 0;}
+.containar{height: 100vh;
+display: grid;
+border: 4px solid rgb(40, 227, 19);
+align-content:space-around ;
+grid-template-columns: 100px 100px 100px ;
+grid-template-rows: 100px 100px  ;
+
+
+}
+ .itm-1{  
+
+background-color: brown;
+}
+.itm-2{ background-color: rgb(40, 227, 19);
+}
+.itm-3{ background-color: rgb(18, 115, 115);
+}
+.itm-4{ background-color: rgb(149, 109, 36);
+}
+.itm-5{ background-color: rgb(28, 4, 100);
+}
+.itm-6{ background-color: rgb(98, 77, 77);
+}

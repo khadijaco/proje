@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خديجة محمد دباس — مطوّرة واجهات ويب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1420;
+    --panel:#161D2C;
+    --panel-soft:#1B2434;
+    --line:#2A3446;
+    --text:#EEF1F7;
+    --muted:#9CA6BC;
+    --accent:#F2B84B;
+    --accent-soft:#4A3A1E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    line-height:1.8;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{ font-family:'Cairo', sans-serif; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:920px; margin:0 auto; padding:0 24px; }
+
+  /* ===== Nav ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,20,32,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; }
+  .brand{ font-weight:800; font-size:1.05rem; letter-spacing:.3px; }
+  .brand span{ color:var(--accent); }
+  nav ul{ list-style:none; display:flex; gap:26px; }
+  nav a{ font-size:.92rem; color:var(--muted); transition:color .2s; }
+  nav a:hover{ color:var(--text); }
+  .nav-toggle{ display:none; }
+
+  /* ===== Hero ===== */
+  .hero{ padding:96px 0 72px; position:relative; }
+  .hero .eyebrow-mark{
+    display:inline-flex; align-items:center; gap:10px;
+    color:var(--accent); font-family:'Cairo',sans-serif; font-weight:700; font-size:.95rem;
+    margin-bottom:22px;
+  }
+  .hero .eyebrow-mark svg{ width:20px; height:20px; }
+  .hero h1{
+    font-size:clamp(2.3rem, 6vw, 3.6rem);
+    font-weight:800; line-height:1.25; max-width:14ch;
+  }
+  .hero h1 .cursor{
+    display:inline-block; width:.5ch; background:var(--accent);
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero p.lead{
+    margin-top:22px; color:var(--muted); font-size:1.08rem; max-width:52ch;
+  }
+  .hero .stat-row{
+    display:flex; gap:36px; margin-top:44px; flex-wrap:wrap;
+  }
+  .stat b{ display:block; font-family:'Cairo',sans-serif; font-size:1.6rem; color:var(--accent); }
+  .stat span{ color:var(--muted); font-size:.88rem; }
+
+  /* ===== Section shared ===== */
+  section{ padding:72px 0; border-top:1px solid var(--line); }
+  .section-head{ margin-bottom:40px; max-width:60ch; }
+  .section-head h2{ font-size:1.7rem; font-weight:800; }
+  .section-head p{ color:var(--muted); margin-top:10px; }
+
+  /* ===== About ===== */
+  .about-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:40px; align-items:start; }
+  .about-grid p{ color:#CBD2E1; }
+  .about-grid p + p{ margin-top:16px; }
+  .fact-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px;
+  }
+  .fact-card div + div{ margin-top:16px; padding-top:16px; border-top:1px solid var(--line); }
+  .fact-card b{ font-family:'Cairo',sans-serif; display:block; font-size:.95rem; }
+  .fact-card span{ color:var(--muted); font-size:.85rem; }
+
+  /* ===== Skills ===== */
+  .skill-cols{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .skill-cols h3{ font-size:1rem; margin-bottom:14px; color:var(--accent); }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    border:1px solid var(--line); background:var(--panel);
+    padding:8px 16px; border-radius:999px; font-size:.88rem; color:#DCE1EC;
+  }
+  .chip.learning{ border-color:var(--accent); color:var(--accent); }
+
+  /* ===== Projects ===== */
+  .proj-list{ display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .proj{
+    background:var(--panel); padding:26px 24px; display:grid;
+    grid-template-columns:auto 1fr auto; gap:20px; align-items:center;
+    transition:background .2s;
+  }
+  .proj:hover{ background:var(--panel-soft); }
+  .proj .tag{
+    width:44px; height:44px; border-radius:10px; background:var(--accent-soft);
+    color:var(--accent); display:flex; align-items:center; justify-content:center;
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:.95rem; flex-shrink:0;
+  }
+  .proj h3{ font-size:1.08rem; margin-bottom:6px; }
+  .proj p{ color:var(--muted); font-size:.9rem; }
+  .proj .stack{ color:var(--accent); font-size:.78rem; margin-top:8px; }
+  .proj a.visit{
+    border:1px solid var(--line); border-radius:8px; padding:9px 16px; font-size:.85rem;
+    white-space:nowrap; transition:border-color .2s, color .2s; color:var(--muted);
+  }
+  .proj a.visit:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ===== Contact ===== */
+  .contact-box{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:44px 32px; text-align:center;
+  }
+  .contact-box h2{ font-size:1.6rem; margin-bottom:12px; }
+  .contact-box p{ color:var(--muted); max-width:44ch; margin:0 auto 30px; }
+  .contact-box .email-btn{
+    display:inline-block; background:var(--accent); color:#1a1206; font-weight:700;
+    padding:13px 30px; border-radius:10px; font-family:'Cairo',sans-serif; font-size:.95rem;
+  }
+  .social-row{
+    display:flex; justify-content:center; gap:16px; margin-top:32px; flex-wrap:wrap;
+  }
+  .social-row a{
+    width:44px; height:44px; border:1px solid var(--line); border-radius:10px;
+    display:flex; align-items:center; justify-content:center; color:var(--muted);
+    transition:all .2s;
+  }
+  .social-row a:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+  .social-row svg{ width:19px; height:19px; }
+
+  footer{ padding:30px 0; text-align:center; color:var(--muted); font-size:.82rem; }
+
+  @media (max-width:720px){
+    nav{ display:none; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skill-cols{ grid-template-columns:1fr; }
+    .proj{ grid-template-columns:auto 1fr; }
+    .proj a.visit{ grid-column:1 / -1; text-align:center; }
+    .hero{ padding:64px 0 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">خديجة<span>.</span>دباس</div>
+    <nav>
+      <ul>
+        <li><a href="#about">عني</a></li>
+        <li><a href="#skills">المهارات</a></li>
+        <li><a href="#projects">المشاريع</a></li>
+        <li><a href="#contact">تواصل</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4l-6 8 6 8M16 4l6 8-6 8"/>
+        </svg>
+        طالبة هندسة معلوماتية — سنة ثالثة
+      </div>
+      <h1 id="typed-heading"></h1>
+      <p class="lead">
+        بحوّل التصاميم لصفحات ويب فعلية بـ HTML وCSS وBootstrap وJavaScript，
+        وهلق عم وسّع خبرتي مع React. كل مشروع تحت هو تمرين حقيقي
+        اشتغلت عليه لحالي، من الفكرة لحد آخر سطر كود.
+      </p>
+      <div class="stat-row">
+        <div class="stat"><b>5+</b><span>مشاريع منشورة</span></div>
+        <div class="stat"><b>HTML · CSS · JS</b><span>الأساس</span></div>
+        <div class="stat"><b>Bootstrap</b><span>تصميم متجاوب</span></div>
+        <div class="stat"><b>React</b><span>قيد التعلم حالياً</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:20px;">
+          <h2>عني</h2>
+        </div>
+        <p>
+          اسمي خديجة محمد دباس، طالبة هندسة معلوماتية بالسنة الثالثة.
+          بدأت رحلتي بتعلّم أساسيات الويب من خلال كورس متكامل غطّى
+          HTML وCSS وBootstrap وJavaScript، وطبّقت كل مرحلة بمشروع
+          حقيقي بدل ما أوقف عند النظري بس.
+        </p>
+        <p>
+          حالياً عم أبني على هالأساس بتعلّم React، وهدفي أوصل لمستوى
+          أقدر فيه أبني تطبيقات ويب متكاملة وتفاعلية من الواجهة لحد
+          المنطق البرمجي.
+        </p>
+      </div>
+      <div class="fact-card">
+        <div>
+          <b>التخصص</b>
+          <span>هندسة معلوماتية</span>
+        </div>
+        <div>
+          <b>المرحلة الدراسية</b>
+          <span>سنة ثالثة</span>
+        </div>
+        <div>
+          <b>بتعلّم حالياً</b>
+          <span>React.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>المهارات</h2>
+        <p>الأدوات واللغات يلي بنيت فيها مشاريعي حتى الأن.</p>
+      </div>
+      <div class="skill-cols">
+        <div>
+          <h3>أساسيات ثابتة</h3>
+          <div class="chip-row">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">Bootstrap</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Responsive Design</span>
+          </div>
+        </div>
+        <div>
+          <h3>قيد التطوير</h3>
+          <div class="chip-row">
+            <span class="chip learning">React.js</span>
+            <span class="chip learning">Git & GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>المشاريع</h2>
+        <p>خمس تجارب مختلفة بين مواقع تعريفية كاملة وتطبيقات JavaScript تفاعلية.</p>
+      </div>
+      <div class="proj-list">
+
+        <div class="proj">
+          <div class="tag">01</div>
+          <div>
+            <h3>Eduleb — منصة تعليمية</h3>
+            <p>موقع تعريفي لمنصة كورسات أونلاين، فيه صفحات للكورسات والمدرّبين والمدونة.</p>
+            <div class="stack">HTML · CSS · Bootstrap</div>
+          </div>
+          <a class="visit" href="https://earnest-arithmetic-5ac36b.netlify.app" target="_blank" rel="noopener">فتح الموقع</a>
+        </div>
+
+        <div class="proj">
+          <div class="tag">02</div>
+          <div>
+            <h3>Luxe Studio — تصميم داخلي</h3>
+            <p>موقع تعريفي لاستوديو تصميم داخلي ومعماري، بأقسام للخدمات والمشاريع وآراء العملاء.</p>
+            <div class="stack">HTML · CSS · Bootstrap</div>
+          </div>
+          <a class="visit" href="https://reliable-trifle-1ada35.netlify.app" target="_blank" rel="noopener">فتح الموقع</a>
+        </div>
+
+        <div class="proj">
+          <div class="tag">03</div>
+          <div>
+            <h3>Tea Station — موقع منتج</h3>
+            <p>موقع تعريفي لعلامة شاي، فيه صفحة منتجات وقصة العلامة التجارية.</p>
+            <div class="stack">HTML · CSS</div>
+          </div>
+          <a class="visit" href="https://fantastic-tulumba-18a578.netlify.app" target="_blank" rel="noopener">فتح الموقع</a>
+        </div>
+
+        <div class="proj">
+          <div class="tag">04</div>
+          <div>
+            <h3>اختبار المعلومات العامة</h3>
+            <p>تطبيق تفاعلي بيعرض أسئلة، يحسب النتيجة، وبيسمح بإعادة المحاولة.</p>
+            <div class="stack">JavaScript</div>
+          </div>
+          <a class="visit" href="https://candid-narwhal-3e56f4.netlify.app" target="_blank" rel="noopener">فتح الموقع</a>
+        </div>
+
+        <div class="proj">
+          <div class="tag">05</div>
+          <div>
+            <h3>مدير المهام بالأولوية</h3>
+            <p>تطبيق لإدارة المهام اليومية مع تحديد تاريخ الاستحقاق ومستوى الأولوية لكل مهمة.</p>
+            <div class="stack">JavaScript</div>
+          </div>
+          <a class="visit" href="https://magical-gingersnap-2f9aa5.netlify.app" target="_blank" rel="noopener">فتح الموقع</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box">
+        <h2>لنشتغل مع بعض</h2>
+        <p>لسا بتعلّم وبتوسّع بمهاراتي، ومنفتحة على فرص تدريب أو تعاون بمشاريع ويب.</p>
+        <a class="email-btn" href="mailto:ase100005.kh@gmail.com">راسليني عالإيميل</a>
+
+        <div class="social-row">
+          <a href="https://github.com/khadijaco" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.8 5.4.8 11.7c0 5 3.2 9.2 7.7 10.7.6.1.8-.2.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-3 0 0 .9-.3 3 1.1a10.4 10.4 0 0 1 5.4 0c2.1-1.4 3-1.1 3-1.1.6 1.6.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.2-5.1 5.5.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.5-1.5 7.7-5.7 7.7-10.7C23.2 5.4 18.3.5 12 .5z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/خديجه-دباس-333727260" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.6v1.7h.05c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.4 4.5 5.6V21h-4v-5.4c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/share/19feYV2wWF/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/jojo___da__" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 خديجة محمد دباس — كل الحقوق محفوظة</div>
+</footer>
+
+<script>
+  const text = "خديجة محمد دباس";
+  const el = document.getElementById('typed-heading');
+  let i = 0;
+  function type(){
+    if(i <= text.length){
+      el.innerHTML = text.slice(0,i) + '<span class="cursor">&nbsp;</span>';
+      i++;
+      setTimeout(type, 90);
+    } else {
+      el.innerHTML = text + '<span class="cursor">&nbsp;</span>';
+    }
+  }
+  type();
+</script>
+
+</body>
+</html>
